@@ -1,6 +1,8 @@
 package me.ye.javaeedemo.controller.course;
 
 import me.ye.javaeedemo.entity.Course;
+import me.ye.javaeedemo.service.CourseService;
+import me.ye.javaeedemo.service.impl.CourseServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -18,15 +20,17 @@ import java.util.List;
  */
 @WebServlet(name = "DisplayCourses", value = "/courses/display")
 public class DisplayCourses extends HttpServlet {
+
+    private CourseService courseService;
+
+    public DisplayCourses() {
+        this.courseService = new CourseServiceImpl();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Course> courses = new ArrayList<>();
-        Course course1 = new Course(1l, "计算机基础", "张三","必修");
-        Course course2 = new Course(2l, "计算机网络", "李四","必修");
-        Course course3 = new Course(3l, "Microsoft Office", "王五","选修");
-        courses.add(course1);
-        courses.add(course2);
-        courses.add(course3);
+
+        List<Course> courses = courseService.findAll();
         req.setAttribute("courses", courses);
         ServletContext context = getServletContext();
         RequestDispatcher dispatcher = context.getRequestDispatcher("/course/display.jsp");

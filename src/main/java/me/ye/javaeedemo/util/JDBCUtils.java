@@ -37,11 +37,11 @@ public class JDBCUtils {
             }
             if (statement != null) {
                 statement.close();
-                LOGGER.info("Close statement set successfully");
+                LOGGER.info("Close statement successfully");
             }
             if (connection != null) {
                 connection.close();
-                LOGGER.info("Close connection set successfully");
+                LOGGER.info("Close connection successfully");
             }
         } catch (Exception ex) {
             LOGGER.severe("An error encountered: " + ex.getMessage());

@@ -11,15 +11,6 @@ public class Course {
     private String lecturer;
     private String category;
 
-    public Course(Long id, String name, String lecturer, String category) {
-        this.id = id;
-        this.name = name;
-        this.lecturer = lecturer;
-        this.category = category;
-    }
-
-    public Course() {
-    }
 
     public Long getId() {
         return id;
