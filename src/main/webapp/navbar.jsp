@@ -20,7 +20,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${pageContext.request.contextPath}">选课系统</a>
+            <a class="navbar-brand">选课系统</a>
         </div>
         <div class="collapse navbar-collapse" id="my-navbar-collapse-1">
             <ul class="nav navbar-nav">
