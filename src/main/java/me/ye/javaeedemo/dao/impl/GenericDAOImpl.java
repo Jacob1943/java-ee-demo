@@ -7,9 +7,12 @@ import me.ye.javaeedemo.util.JDBCUtils;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedType;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -66,20 +69,20 @@ public class GenericDAOImpl<T, ID> implements GenericDAO<T, ID> {
         return tableName;
     }
 
-    private T setEntity(Class<T> clazz, ResultSet resultSet) {
-        T t = null;
+    private List<T> getResults(Class<T> clazz, ResultSet resultSet) {
+        List<T> results = new ArrayList<>();
         try {
-            t = clazz.newInstance();
             Field[] fields = clazz.getFields();
-            for (int i = 0; i < fields.length; i++) {
-                resultSet.getObject(i);
-                Field field = fields[1];
-                field.set();
-            }
+            while (resultSet.next()) {
+                T t = clazz.newInstance();
+                for (int i = 0; i < fields.length; i++) {
+                    Object value = resultSet.getObject(i);
 
+                }
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return  t;
+        return  results;
     }
 }
